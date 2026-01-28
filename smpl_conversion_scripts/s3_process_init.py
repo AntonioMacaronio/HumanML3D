@@ -78,11 +78,11 @@ def process(file_name, data_dir, save_dir):
     }
     
     body_world = bm(**body_parms)
-    jtr = body_world.Jtr.detach().cpu().numpy()
-    # exchange y z, human stands on xy -> xz plane
-    jtr = jtr[:, :22, [0, 2, 1]]
-    jtr[..., 0] *= -1
-
+    jtr = body_world.Jtr.detach().cpu().numpy()[:, :22, :]
+    # Note: jtr is now in Z-up coordinate system (matching bdata_trans)
+    # - X: left-right
+    # - Y: front-back
+    # - Z: up-down (vertical)
 
     new_data={
         'bdata_poses': poses, 
