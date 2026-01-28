@@ -8,6 +8,8 @@ import os
 import torch
 import numpy as np
 from tqdm import tqdm
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from human_body_prior.body_model.body_model import BodyModel
 
 # Choose the device to run the body model on.
@@ -25,7 +27,7 @@ male_bm = BodyModel(bm_fname=male_bm_path, num_betas=num_betas, num_dmpls=num_dm
 female_bm = BodyModel(bm_fname=female_bm_path, num_betas=num_betas, num_dmpls=num_dmpls, dmpl_fname=female_dmpl_path).to(comp_device)
 
 # expect 30 fps
-ex_fps = 30
+ex_fps = 20
 
 
 def amass_to_pose(src_path, save_path):
@@ -108,10 +110,11 @@ if __name__ == '__main__':
     for root, dirs, files in os.walk('./amass_data'):
         folders.append(root)
         for name in files:
-            dataset_name = root.split('/')[2]
-            if dataset_name not in dataset_names:
-                dataset_names.append(dataset_name)
-            paths.append(os.path.join(root, name))
+            if name.endswith('.npz'):
+                dataset_name = root.split('/')[2]
+                if dataset_name not in dataset_names:
+                    dataset_names.append(dataset_name)
+                paths.append(os.path.join(root, name))
 
     save_root = './pose_data'
     save_folders = [folder.replace('./amass_data', './pose_data') for folder in folders]

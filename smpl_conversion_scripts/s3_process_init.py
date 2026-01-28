@@ -9,6 +9,8 @@ import os
 import numpy as np
 from tqdm import tqdm
 from tools import utils_transform
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from human_body_prior.body_model.body_model import BodyModel
 import torch
 from scipy.spatial.transform import Rotation as R
