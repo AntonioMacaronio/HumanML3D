@@ -163,14 +163,6 @@ def main(config: VisConfig):
     num_joints_frames = 0
     num_mesh_frames = 0
 
-    # Try to load skeleton data (new_joints/)
-    joints_path = os.path.join(config.joints_dir, f"{config.motion_id}.npy")
-    if os.path.exists(joints_path):
-        print(f"\nLoading skeleton from: {joints_path}")
-        joints = np.load(joints_path)
-        num_joints_frames = joints.shape[0]
-        print(f"  Frames: {num_joints_frames}, Shape: {joints.shape}")
-
     # Load SMPL mesh data if requested
     if config.show_mesh:
         smpl_path = os.path.join(config.smpl_dir, f"{config.motion_id}.npy")
@@ -298,7 +290,7 @@ def main(config: VisConfig):
         "/floor",
         width=10,
         height=10,
-        plane="xz",
+        plane="xy",
         cell_color=(200, 200, 200),
         cell_thickness=1,
         visible=True,
