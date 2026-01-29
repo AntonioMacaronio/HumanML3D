@@ -75,7 +75,7 @@ class VisConfig:
     smpl_dir: str = "./HumanML3D/smpl"
     texts_dir: str = "./HumanML3D/texts"
     port: int = 8080
-    show_mesh: bool = False
+    show_mesh: bool = True
     gender: str = "neutral"
 
 
