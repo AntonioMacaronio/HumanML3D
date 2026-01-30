@@ -5,6 +5,20 @@ Relocate with new names: 000001.npy (align with text)
 
 Input  folder: './pose_data', 
 Output folder: './joints'
+
+                                                                                                                                                                  
+Purpose: Segment motions to specified time periods and create mirrored versions                                                                                 
+┌────────────────────────┬─────────────────────────────────────┐                                                                                                
+│         Input          │               Output                │                                                                                                
+├────────────────────────┼─────────────────────────────────────┤                                                                                                
+│ ./pose_data/**/*.npy   │ ./joints/{new_name}.npy             │                                                                                                
+├────────────────────────┼─────────────────────────────────────┤                                                                                                
+│ ./index.csv (metadata) │ ./joints/M{new_name}.npy (mirrored) │                                                                                                
+└────────────────────────┴─────────────────────────────────────┘
+                                                                                                
+Details: Reads the index.csv to get segment info (start/end frames, new names). For each segment, it creates two files:                                         
+- {new_name}.npy - the original segment                                                                                                                         
+- M{new_name}.npy - a left-right mirrored version (data augmentation) 
 '''
 import os
 import pandas as pd

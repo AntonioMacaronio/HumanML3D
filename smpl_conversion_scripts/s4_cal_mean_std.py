@@ -3,6 +3,17 @@ Compute Mean, Std
 
 Input folder: './HumanML3D/smpl'
 Output folder: './HumanML3D/
+
+Purpose: Compute mean and standard deviation for normalization                                                                                                  
+┌────────────────────────┬─────────────────────────┐                                                                                                            
+│         Input          │         Output          │                                                                                                            
+├────────────────────────┼─────────────────────────┤                                                                                                            
+│ ./HumanML3D/smpl/*.npy │ ./HumanML3D/Mean_6d.npy │                                                                                                            
+├────────────────────────┼─────────────────────────┤                                                                                                            
+│                        │ ./HumanML3D/Std_6d.npy  │                                                                                                            
+└────────────────────────┴─────────────────────────┘
+                                                                                                            
+Details: Aggregates all 6D pose data from the processed files and computes per-dimension mean and std for later normalization. 
 '''
 import os
 import numpy as np

@@ -4,6 +4,20 @@ Add 6D rotation representation, inferred joints from 6d
 
 Input  folder: './joints', 
 Output folder: './HumanML3D/smpl'
+
+Purpose: Normalize motion to start from origin, convert rotations to 6D representation                                                                          
+┌────────────────┬────────────────────────┐                                                                                                                     
+│     Input      │         Output         │                                                                                                                     
+├────────────────┼────────────────────────┤                                                                                                                     
+│ ./joints/*.npy │ ./HumanML3D/smpl/*.npy │                                                                                                                     
+└────────────────┴────────────────────────┘
+                                                                                                                     
+Details: For each motion:                                                                                                                                       
+- Places feet on floor (adjusts height)                                                                                                                         
+- Moves starting position to origin                                                                                                                             
+- Rotates so character initially faces Y+/Z+                                                                                                                    
+- Converts axis-angle rotations to 6D representation                                                                                                            
+- Re-computes joint positions from normalized poses
 '''
 import os
 import numpy as np

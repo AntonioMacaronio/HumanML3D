@@ -3,6 +3,16 @@ Downsample AMASS data to 20 fps
 Input  folder: './amass_data', 
 Output folder: './pose_data'
 jtr only for alignment visualization
+
+Purpose: Downsample AMASS data to 20 fps and run SMPL body model to get the joint positions.                                                                                            
+┌───────────────────────┬──────────────────────┐                                                                                                                
+│         Input         │        Output        │                                                                                                                
+├───────────────────────┼──────────────────────┤                                                                                                                
+│ ./amass_data/**/*.npz │ ./pose_data/**/*.npy │                                                                                                                
+└───────────────────────┴──────────────────────┘
+ 
+Details: Reads raw AMASS motion capture files, runs them through the SMPL-H body model to get joint positions, 
+swaps Y/Z axes (so humans stand on XZ plane), and saves poses, translations, betas, gender, and joint trajectories.
 '''
 import os
 import torch
