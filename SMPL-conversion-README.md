@@ -123,17 +123,6 @@ python s4_cal_mean_std.py
 
 In the end, you should find the data you need at './HumanML3D/smpl/'.
 
-```
-# SMPL-H representation
-{
-    'bdata_poses': (frame_num, 52*3)
-    'bdata_trans': (frame_num, 3) # global position
-    'betas':        (16, )
-    'gender':       'male'/'female'
-    'pose_6d':     (frame_num, 52*6) # 6d rotation representation, better for training
-}
-```
-
 Output Data Structure                                                                                                                   
                                                                                                                                           
 ./HumanML3D/smpl/ (from s3_process_init.py)                                                                                             
@@ -141,14 +130,15 @@ Output Data Structure
 Each .npy file (e.g., 000000.npy, M000000.npy) contains a dictionary:       
 ```                                                            
 {                                                                                                                                       
-    'bdata_poses':  (num_frames, 156)   # SMPL-H axis-angle rotations (52 joints × 3)                                                   
-    'bdata_trans':  (num_frames, 3)     # Global translation (x, y, z)                                                                  
-    'betas':        (10,) or (16,)      # Body shape parameters                                                                         
-    'gender':       str                  # 'male', 'female', or 'unknown'                                                               
-    'pose_6d':      (num_frames, 312)   # 6D rotation representation (52 joints × 6)                                                    
-    'jtr':          (num_frames, 22, 3) # Joint positions (22 joints × xyz)                                                             
+    'bdata_poses':  (num_frames, 156)     # SMPL-H axis-angle rotations (52 joints × 3)                                                   
+    'bdata_trans':  (num_frames, 3)       # Global translation (x, y, z)                                                                  
+    'betas':        (10,) or (16,)        # Body shape parameters                                                                         
+    'gender':       str                   # 'male', 'female', or 'unknown'                                                               
+    'pose_6d':      (num_frames, 312)     # 6D rotation representation (52 joints × 6)                                                    
+    'jtr':          (num_frames, 22, 3)   # Joint positions (22 joints × xyz)                                                             
 }
-```                                                                                                                                       
+```
+Access this dictionary with `np.load(npy_filepath, allow_pickle=True).item()`
                                                                                                                                           
 ./HumanML3D/ (statistics)                                                                                                               
                                                                                                                                       
